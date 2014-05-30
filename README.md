@@ -4,6 +4,13 @@ This is a codebase that will allow energy.gov users to quickly get started devel
 
 ## Setup
 
+Clone the repo:
+`git clone https://github.com/energyapps/app_frame.git`
+
+Rename, create and initialize your github repo
+
+Push to this repo
+
 ## Contents
 
 ## 

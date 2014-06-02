@@ -9,8 +9,6 @@ Clone the repo:
 
 Rename, create and initialize your github repo
 
-Push to this repo
+Push to the new repo
 
 ## Contents
-
-## 

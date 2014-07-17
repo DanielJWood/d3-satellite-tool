@@ -18,14 +18,8 @@
     <link href='//api.tiles.mapbox.com/mapbox.js/v1.4.0/mapbox.ie.css' rel='stylesheet'>
   <![endif]-->
 
-<!-- Begin Merged CSS -->
-
-
+<!-- Map CSS -->
 <link rel="stylesheet" type="text/css" href="/css/style.css">
-
-
-<!-- /End Merged CSS -->
-
 
 <!-- Master CSS for Energy.gov, including fonts, etc -->
 <link type="text/css" rel="stylesheet" href="http://energy.gov/sites/prod/files/css/css_Yr1jLb5PYUBD3A-XlFPbONEnd986KQmh5gGIF4r5pkU.css" media="all" />
@@ -40,31 +34,35 @@
 
 
 <body class="html not-front not-logged-in one-sidebar sidebar-second page-node page-node- page-node-811664 node-type-article group-context group-context-group-1 group-context-taxonomy-term group-context-taxonomy-term-31 has-content-sidebar" >
-  <div id="page" class="container column-row">    
-    <div class="content">
 
+    
 
-      <!-- Begin Merged Markup.html partial Content -->
-      
-        {{ content }}
+<div id="page" class="container column-row">    
+  <div class="content">
 
-      <!-- /End Merged Content -->
-
-
+    
+    <!-- Begin content -->
+    <div id="master_container">
+      <div id="map">
+      </div>        
     </div>
+    <!-- End content -->
+
+
   </div>
+</div>
 
-<!-- Javascript references -->
-  <!-- Libraries such as jquery, mapbox, highcharts. Can (probably should) be referenced from external setting-->
+<!-- Libraries (references locally or externally)-->
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="libraries/highcharts/highcharts.js"></script>
+<script src="libraries/leaflet.js"></script>
 
-  <!-- Data (JSON, etc) -->
-  
+<!-- Data -->
+  <script type="text/javascript" src="/js/data.js"></script>
 
-  <!-- Scripts (get to work) like script.js -->
-  
+<!-- Scripts -->
+  <script type="text/javascript" src="/js/script.js"></script>
 
-<!-- /End JS references -->
-
-</body>
+  </body>
 </html>

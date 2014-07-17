@@ -16,6 +16,7 @@ Download and install [Jekyll](http://jekyllrb.com/)
 4. Change remote URL to new repo:
 
 `git remote -v` List all remote urls
+
 `git remote set-url origin https://github.com/energyapps/NEW-REPO-NAME.git` -changes the remote url to your new URL
 
 5. Push to this new repo

@@ -2,14 +2,29 @@
 
 This is a codebase that will allow energy.gov users to quickly get started developing new graphics and maps. By cloning this repo, you can immidiately begin coding. 
 
+## Dependencies
+Download and install [Jekyll](http://jekyllrb.com/)
+
 ## Setup
 
-Clone the repo:
+1. Clone the repo:
+
 `git clone https://github.com/energyapps/app_frame.git`
 
-Rename, create and initialize your github repo
+2. Rename the folder to your project name
+3. On the [EnergyApps Github group](https://github.com/energyapps) create and name a new project repo.
+4. Change remote URL to new repo:
 
-Push to the new repo
+`git remote -v` List all remote urls
+`git remote set-url origin https://github.com/energyapps/NEW-REPO-NAME.git` -changes the remote url to your new URL
+
+5. Push to this new repo
+
+`git push -u origin master`
+
+6. Begin work in the `index.html` file.
+7. Build the Jekyll _site/ folder by running `jekyll build`
+8. Run the jekyll server by running `jekyll serve`. You can now see your page at `http://localhost:4000/`
 
 ## Contents
 

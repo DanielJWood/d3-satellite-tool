@@ -2,6 +2,8 @@
 
 This is a codebase that will allow energy.gov users to quickly get started developing new graphics and maps. By cloning this repo, you can immidiately begin coding. 
 
+If you're working with [Foundation](http://foundation.zurb.com/) responsive framework, pull down [the App_Frame_Foundation repository](https://github.com/energyapps/app-frame-foundation).
+
 ## Dependencies
 Download and install [Jekyll](http://jekyllrb.com/)
 
@@ -26,6 +28,8 @@ Download and install [Jekyll](http://jekyllrb.com/)
 - Begin work in the `index.html` file.
 - Build the Jekyll _site/ folder by running `jekyll build`
 - Run the jekyll server by running `jekyll serve`. You can now see your page at `http://localhost:4000/`
+- Optional: Update Readme to reflect your current project.
+
 
 ## Contents
 

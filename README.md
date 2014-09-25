@@ -14,6 +14,9 @@ Download and install [Jekyll](http://jekyllrb.com/)
 `git clone https://github.com/energyapps/app_frame.git`
 
 - Rename the folder to your project name
+
+`mv app_frame/ new_directory_name/`
+
 - On the [EnergyApps Github group](https://github.com/energyapps) create and name a new project repo.
 - cd into that folder in terminal and change remote URL to new repo:
 
@@ -29,7 +32,7 @@ Download and install [Jekyll](http://jekyllrb.com/)
 - Build the Jekyll _site/ folder by running `jekyll build`
 - Run the jekyll server by running `jekyll serve`. You can now see your page at `http://localhost:4000/`
 - Optional: Update Readme to reflect your current project.
-
+- Optional: If you want to create a gh-pages repo, do that.
 
 ## Contents
 

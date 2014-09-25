@@ -2,9 +2,11 @@
 
 This is a codebase that will allow energy.gov users to quickly get started developing new graphics and maps. By cloning this repo, you can immidiately begin coding. 
 
-If you're working with [Foundation](http://foundation.zurb.com/) responsive framework, pull down [the App_Frame_Foundation repository](https://github.com/energyapps/app-frame-foundation).
+If you're working with [Foundation](http://foundation.zurb.com/) responsive framework, pull down [the App_Frame_Foundation repository](https://github.com/energyapps/app-frame-foundation). Note: Its a big work in progress, and a lot of the CSS will interfere with energy.gov's default css.
 
 ## Dependencies
+Git (obviously)
+Be a energyapps member.
 Download and install [Jekyll](http://jekyllrb.com/)
 
 ## Setup
@@ -28,9 +30,16 @@ Download and install [Jekyll](http://jekyllrb.com/)
 
 `git push -u origin master`
 
+- Branch out the gh-pages branch
+
+`git branch gh-pages`
+`git checkout gh-pages`
+`git push origin gh-pages`
+
 - Begin work in the `index.html` file.
-- Build the Jekyll _site/ folder by running `jekyll build`
-- Run the jekyll server by running `jekyll serve`. You can now see your page at `http://localhost:4000/`
+- Build the Jekyll `_site/` folder by running `jekyll build` in your directory.
+- Run the jekyll server by running `jekyll serve`. You can now see your page at [](http://localhost:4000/)
+- Push changes to github, see website running remotely at energyapps.github.io/NEW-REPO-NAME/index.html
 - Optional: Update Readme to reflect your current project.
 - Optional: If you want to create a gh-pages repo, do that.
 

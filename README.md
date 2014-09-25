@@ -68,6 +68,5 @@ Download and install [Jekyll](http://jekyllrb.com/)
 
 ## Notes
 
-The _sites/ folder does not get commited to the repository.
 
 Public Domain

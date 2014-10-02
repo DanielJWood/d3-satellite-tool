@@ -5,9 +5,9 @@ This is a codebase that will allow energy.gov users to quickly get started devel
 If you're working with [Foundation](http://foundation.zurb.com/) responsive framework, pull down [the App_Frame_Foundation repository](https://github.com/energyapps/app-frame-foundation). Note: Its a big work in progress, and a lot of the CSS will interfere with energy.gov's default css.
 
 ## Dependencies
-Git (obviously)
-Be a energyapps member.
-Download and install [Jekyll](http://jekyllrb.com/)
+- Git (obviously)
+- Be a energyapps member.
+- Download and install [Jekyll](http://jekyllrb.com/)
 
 ## Setup
 

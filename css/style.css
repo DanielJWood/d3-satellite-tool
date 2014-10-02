@@ -17,4 +17,4 @@ Map
     width: 100%;
     height: 800px;
  }
- #map { position:absolute; top:0; height: 500px; width:99%; border: 4px solid #333;}
+ #map { position:absolute; top:0; height: 500px; width:100%;}

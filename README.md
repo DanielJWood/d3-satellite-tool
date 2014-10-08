@@ -36,7 +36,7 @@ If you're working with [Foundation](http://foundation.zurb.com/) responsive fram
 `git push origin gh-pages`
 
 - Begin work in the `index.html` file.
-- Build the Jekyll `_site/` folder by running `jekyll build` in your directory.
+- Build the Jekyll `_site/` folder by running `jekyll build` in your directory. I recommend running `jekyll build --watch`, which automatically rebuilds your `_site` folder whenever you change something in the directory.
 - Run the jekyll server by running `jekyll serve`. You can now see your page at [](http://localhost:4000/)
 - Push changes to github, see website running remotely at energyapps.github.io/NEW-REPO-NAME/index.html
 - Optional: Update Readme to reflect your current project.

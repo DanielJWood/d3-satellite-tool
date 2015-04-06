@@ -1,8 +1,5 @@
 ---
-
-
 layout: post
-
 ---
 
 <!DOCTYPE html>
@@ -10,18 +7,38 @@ layout: post
 <style>
 
 .graticule {
-  fill: none;
-  stroke: #777;
+  fill: #ce008d;
+  fill-opacity: 0.2;
+  stroke: #ce008d;
 }
 
 .boundary {
-  fill: #ccc;
-  fill-opacity: .8;
-  stroke: #000;
+  fill: rgb(141,206,0);
+  fill-opacity: 1;
+  stroke: #fff;
 }
 
 </style>
 <body>
+  distance: <input type="text" id="mydistance" value="1.1"><br>
+  scale: <input type="text" id="myscale" value="1000"><br>
+  yaw: <input type="text" id="myyaw" value="-117"><br>
+  pitch: <input type="text" id="mypitch" value="-36.50"><br>
+  roll: <input type="text" id="myroll" value="0"><br>
+  centerx: <input type="text" id="mycenterx" value="-2"><br>
+  centery: <input type="text" id="mycentery" value="0"><br>
+  tilt: <input type="text" id="mytilt" value="0"><br>
+  precision: <input type="text" id="myprecision" value="0.1"><br>
+  cl1: <input type="text" id="mycl1" value="1"><br>
+  cl2: <input type="text" id="mycl2" value="1.1"><br>
+  cl3: <input type="text" id="mycl3" value="180"><br>
+  cl4: <input type="text" id="mycl4" value="1e-6">
+
+
+<p>Click the button to change the value of the text field.</p>
+
+<button onclick="clickFunction()">Try it</button>
+
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -39,106 +56,118 @@ var width = 960,
 //     .clipAngle(Math.acos(1 / 1.1) * 180 / Math.PI - 1e-6)
 //     .precision(0.1);
 
+var distance = 1.1;
+var scale = 1000; 
+var yaw = -117;
+var pitch = -36.5;
+var roll = 0;
+var centerx =  -2;
+var centery = 0;
+var tilt = 0;
+var precision = 0.1;
+
 var projection = d3.geo.satellite()
-    .distance(1.1)
-    .scale(1500)    
-    // .rotate([66.00, -44.50, 0])
-    // .rotate([76.00, -34.50, 32.12])
-    .center([-2, 5])
-    .tilt(0)
+    .distance(distance)
+    .scale(scale)    
+    .center([centerx, centery])
+    .tilt(tilt)
     .clipAngle(Math.acos(1 / 1.1) * 180 / Math.PI - 1e-6)
-    .precision(.1);    
+    .precision(precision);    
 
 projection.rotate([-117.00, -36.50,0]) //yaw, pitch, roll    
-
-
-var graticule = d3.geo.graticule()
-    .extent([[-93, 0.49], [150.61, 90]])
-    // .extent([-36,-110.50],[-47,57])
-    .step([1, 1]);
-
-var path = d3.geo.path()
-    .projection(projection);
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-d3.json("js/us-land.json", function(error, us) {
-  svg.append("path")
-      .datum(topojson.feature(us, us.objects.land))
-      .attr("class", "boundary")
-      .attr("d", path);
-});
 
+function clickFunction() {
+  var distance = document.getElementById("mydistance").value;
+  var scale = document.getElementById("myscale").value;
+  var yaw = document.getElementById("myyaw").value;
+  var pitch = document.getElementById("mypitch").value;
+  var roll = document.getElementById("myroll").value;
+  var centerx = document.getElementById("mycenterx").value;
+  var centery = document.getElementById("mycentery").value;
+  var tilt = document.getElementById("mytilt").value;
+  var precision = document.getElementById("myprecision").value;
+  var cl1 = document.getElementById("mycl1").value;
+  var cl2 = document.getElementById("mycl2").value;
+  var cl3 = document.getElementById("mycl3").value;
+  var cl4 = document.getElementById("mycl4").value;
+
+
+  var projection = d3.geo.satellite()
+      .distance(distance)
+      .scale(scale)    
+      .center([centerx, centery])
+      .tilt(tilt)
+      .clipAngle(Math.acos(cl1 / cl2) * cl3 / Math.PI - cl4)
+      // .clipAngle(Math.acos(1 / 1.1) * 180 / Math.PI - 1e-6)
+      .precision(precision)
+      .rotate([yaw, pitch, roll]) //yaw, pitch, roll    ;    
+
+  buildMap(projection);
+}
+
+
+  
+
+function buildMap(projection) {
+console.log('hello')
 d3.json("js/china3.json", function(error, china) {
   if (error) return console.error(error);
-  console.log(china);
 
-// d3.select("body").selectAll(".place-label").data([]).exit().remove();
-d3.select("body").selectAll("path").data([]).exit().remove();
+  d3.select("body").selectAll(".place-label").data([]).exit().remove();
+  d3.select("body").selectAll("path").data([]).exit().remove();  
 
-svg.append("path")
+
+var path = d3.geo.path()
+  .projection(projection);
+
+  var graticule = d3.geo.graticule()
+    .extent([[-93, 0.49], [150.61, 90]])
+    // .extent([-36,-110.50],[-47,57])
+    .step([1, 1]);
+
+  svg.append("path")
     .datum(graticule)
     .attr("class", "graticule")
     .attr("d", path);
 
-svg.append("path")
+  svg.append("path")
       .datum(topojson.feature(china, china.objects.us_10m_china))
       .attr("class", "boundary")
       .attr("d", path);
 
-svg.append("path")
-    .datum(topojson.feature(china, china.objects.china_cities_places3))
-    .attr("d", path)
-    .attr("class", "place");
+  svg.append("path")
+      .datum(topojson.feature(china, china.objects.china_cities_places3))
+      .attr("d", path)
+      .attr("class", "place");
 
-svg.selectAll(".place-label")
-    .data(topojson.feature(china, china.objects.china_cities_places3).features)
-  .enter().append("text")
+  svg.selectAll(".place-label")
+      .data(topojson.feature(china, china.objects.china_cities_places3).features)
+    .enter().append("text")
     .attr("class", "place-label")
     .attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })
     .attr("dy", ".35em")
     .text(function(d) { return d.properties.name; });
 
+    });
+
+};
+
 
 d3.select(self.frameElement).style("height", height + "px");
 
-window.onload= start();
+window.onload= buildMap(projection);
 
-var threshold = 200;
-//create the mechanism to run several times, then stop
-var timesRun = 0;
-
-//tells you where you are in the sequence, how many spaces the bars are ofput by.
-var j = 0; 
-
-function start() {
-	var loop = setInterval(function () {
-        loopfunction();
-        
-        timesRun += 1;
-        j += 1;
-            if(timesRun === threshold+1){
-                clearInterval(loop);
-                timesRun = 0;	                    
-                j = 0; 						//reset initial beginning sequence number to 0 when it reaches threshold
-                start();        				            
-            }
-    }, 5);
-};
-
-//what to do each time.
-function loopfunction() { console.log
-console.log("hello")
+// d3.json("js/us-land.json", function(error, us) {
+//   svg.append("path")
+//       .datum(topojson.feature(us, us.objects.land))
+//       .attr("class", "boundary")
+//       .attr("d", path);
+// });
 
 
-// console.log(projection)
-
-
-
-
-
-	}
-});
 </script>

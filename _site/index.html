@@ -170,9 +170,7 @@ document.getElementById("myclipangle_container").style.visibility = "hidden";
   var graticuley = document.getElementById("mygraticuley").value;
 
   if(document.getElementById('horizon_yes').checked) {
-    console.log('yes')
     var clipAngle = Math.acos(1 / distance) * 180 / Math.PI - 1e-6;
-    console.log(clipAngle)
   }else if(document.getElementById('horizon_no').checked) {
     var clipAngle = document.getElementById("myclipangle").value;
   }
@@ -196,7 +194,6 @@ document.getElementById("myclipangle_container").style.visibility = "hidden";
 }  
 
 function buildMap(projection, graticule) {
-console.log('Build Map')
 d3.json("js/world_50m.json", function(error, world) {
   if (error) return console.error(error);
 
@@ -298,7 +295,6 @@ function clickPreset(x) {
     var graticulex = 1;
     var graticuley = 1; 
   } else if (x === "random") {    
-    console.log(getRandomInt(0,20))
     var distance = getRandomInt(1.1,24);
     var scale = getRandomInt(100,6000);
     var yaw = getRandomInt(-180,180);

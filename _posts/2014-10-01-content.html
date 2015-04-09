@@ -36,8 +36,9 @@ If you want to create awesome <a href="" target="_blank">D3 Satellite maps</a>, 
   <div id="myclipangle_container">
     If no, select a ClipAngle between 0 and 180: <input type="text" id="myclipangle" value="90">
   </div>
-
-<p>Click the button to change the value of the text field.</p>
+  Longitude Graticule intreval: <input type="text" id="mygraticulex" value="6">
+  Latitude Graticule intreval: <input type="text" id="mygraticuley" value="6">
+<p>Click to redraw the map.</p>
 
 <button onclick="clickFunction()">Try it</button>
 
@@ -78,6 +79,8 @@ document.getElementById("myclipangle_container").style.visibility = "hidden";
   var centery = document.getElementById("mycentery").value;
   var tilt = document.getElementById("mytilt").value;
   var precision = document.getElementById("myprecision").value;
+  var graticulex = document.getElementById("mygraticulex").value;
+  var graticuley = document.getElementById("mygraticuley").value;
 
   if(document.getElementById('horizon_yes').checked) {
     console.log('yes')
@@ -97,12 +100,17 @@ document.getElementById("myclipangle_container").style.visibility = "hidden";
       .precision(precision)
       .rotate([yaw, pitch, roll]) //yaw, pitch, roll    ;    
 
-  buildMap(projection);
+  var graticule = d3.geo.graticule()
+    // .extent([[-93, 0.49], [170.61, 90]])
+    // .extent([-36,-110.50],[-47,57])
+    .step([graticulex, graticuley]);
+
+  buildMap(projection, graticule);
 }  
 
-function buildMap(projection) {
+function buildMap(projection, graticule) {
 console.log('Build Map')
-d3.json("js/world_topo.json", function(error, world_topo) {
+d3.json("js/world_50m.json", function(error, world) {
   if (error) return console.error(error);
 
   d3.select("body").selectAll(".place-label").data([]).exit().remove();
@@ -111,28 +119,23 @@ d3.json("js/world_topo.json", function(error, world_topo) {
 var path = d3.geo.path()
   .projection(projection);
 
-  var graticule = d3.geo.graticule()
-    // .extent([[-93, 0.49], [170.61, 90]])
-    // .extent([-36,-110.50],[-47,57])
-    .step([6, 6]);
-
   svg.append("path")
     .datum(graticule)
     .attr("class", "graticule")
     .attr("d", path);
 
   svg.append("path")
-      .datum(topojson.feature(world_topo, world_topo.objects.us_10m_world3  ))
+      .datum(topojson.feature(world, world.objects.us_50m_world  ))
       .attr("class", "boundary")
       .attr("d", path);
 
   svg.append("path")
-      .datum(topojson.feature(world_topo, world_topo.objects.china_cities_places3))
+      .datum(topojson.feature(world, world.objects.china_cities_places3))
       .attr("d", path)
       .attr("class", "place");
 
   svg.selectAll(".place-label")
-      .data(topojson.feature(world_topo, world_topo.objects.china_cities_places3).features)
+      .data(topojson.feature(world, world.objects.china_cities_places3).features)
     .enter().append("text")
     .attr("class", "place-label")
     .attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })

@@ -36,13 +36,14 @@ body {
 </style>
 <body>
   <div id="text-container">
-    If you want to create awesome <a href="http://bl.ocks.org/mbostock/3790444" target="_blank">D3 Satellite maps</a>, you're going to need to fiddle with the parameters to get the zoom and angles right. If you want to read up more on the rather esoteric names of each of these (below) check out the <a href="https://github.com/mbostock/d3/wiki/Geo-Projections" target="_blank">D3 geo projections documentation</a>. <br>
+    If you want to create awesome <a href="http://bl.ocks.org/mbostock/3790444" target="_blank">D3 Satellite maps</a>, you're going to need to fiddle with the parameters to get the zoom and angles right. This tool allows you to do that more quickly. If you want to read up more on the names of each of these (below) check out the <a href="https://github.com/mbostock/d3/wiki/Geo-Projections" target="_blank">D3 geo projections documentation</a>. <br>
     Made by <a href="">Daniel Wood</a>.
-  </div>
+  </div><br>
+Start by clicking this: <button onclick="clickPreset('random')">Random</button>
+<br>
+<br>
 
-
-<br><br>
-
+Parameters (I would recommend fiddling mostly with distance, scale, rotation, and the graticules)<br>
   distance: <input type="text" id="mydistance" value="20">
   scale: <input type="text" id="myscale" value="1500"><br>
   <a target="_blank" href="http://bl.ocks.org/mbostock/4282586">Rotation of the globe</a>:
@@ -64,14 +65,14 @@ Click to redraw the map.
 <br>
 <br>
 Check out these preset examples:
-<button onclick="clickPreset('globe')">China Globe</button>
+<button onclick="clickPreset('random')">Random</button>
+<button onclick="clickPreset('globe')">Mediterranean Globe</button>
 <button onclick="clickPreset('us')">Northeast US</button>
 <button onclick="clickPreset('west')">Western US</button>
-<button onclick="clickPreset('original')">Original China</button>
-<button onclick="clickPreset('random')">Random</button>
+<button onclick="clickPreset('original')">China</button>
+<button onclick="clickPreset('fisheye')">FishEye</button>
 
-
-<a href="https://github.com/DanielJWood/d3-satellite-tool"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+<a href="https://github.com/DanielJWood/d3-satellite-tool"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>  
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
@@ -160,18 +161,18 @@ var path = d3.geo.path()
       .attr("class", "boundary")
       .attr("d", path);
 
-  svg.append("path")
-      .datum(topojson.feature(world, world.objects.china_cities_places3))
-      .attr("d", path)
-      .attr("class", "place");
+  // svg.append("path")
+  //     .datum(topojson.feature(world, world.objects.china_cities_places3))
+  //     .attr("d", path)
+  //     .attr("class", "place");
 
-  svg.selectAll(".place-label")
-      .data(topojson.feature(world, world.objects.china_cities_places3).features)
-    .enter().append("text")
-    .attr("class", "place-label")
-    .attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })
-    .attr("dy", ".35em")
-    .text(function(d) { return d.properties.name; });
+  // svg.selectAll(".place-label")
+  //     .data(topojson.feature(world, world.objects.china_cities_places3).features)
+  //   .enter().append("text")
+  //   .attr("class", "place-label")
+  //   .attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })
+  //   .attr("dy", ".35em")
+  //   .text(function(d) { return d.properties.name; });
 
     });
 };
@@ -183,12 +184,25 @@ function clickPreset(x) {
   if (x === "globe") {
     var distance = 1.1;
     var scale = 1500;
-    var yaw = -117;
+    var yaw = 0;
     var pitch = -36.5;
     var roll = 0;
     var centerx = -2;
     var centery = 5;
     var tilt = 0;
+    var precision = 0.1 ;
+    var graticulex = 3;
+    var graticuley = 3;
+  }
+  else if (x === "fisheye") {
+    var distance = 1.1;
+    var scale = 1000;
+    var yaw = -10;
+    var pitch = -130;
+    var roll = 32;
+    var centerx = -10;
+    var centery = 55;
+    var tilt = 10;
     var precision = 0.1 ;
     var graticulex = 3;
     var graticuley = 3;

@@ -12,5 +12,6 @@ A work in progress. Please feel free to contribute/fork. It is public domain, as
 - sliders for values
 - weighted random for tilt, distance, etc. 
 - correct random intervals for yaw, pitch, and roll.
+- Potentially include [Tangle JS](http://worrydream.com/Tangle/) into the parametersm (instead of sliders?)
 
 ### Updated: 4/8/15

@@ -14,6 +14,7 @@ A work in progress. Please feel free to contribute/fork. It is public domain, as
 - sliders for values (or +/- buttons)
 - weighted random for tilt, distance, etc. 
 - correct random intervals for yaw, pitch, and roll.
-- Potentially include [Tangle JS](http://worrydream.com/Tangle/) into the parametersm (instead of sliders?)
+- Potentially include [Tangle JS](http://worrydream.com/Tangle/) into the parameters (instead of sliders?)
+- Improve geography transition with [Flubber](https://github.com/veltman/flubber).
 
 ### Updated: May 20, 2017
